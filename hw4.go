@@ -184,5 +184,5 @@ func task6() {
 	}
 }
 func task7() {
-
+	fmt.Println("test")
 }
