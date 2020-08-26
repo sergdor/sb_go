@@ -171,7 +171,13 @@ func task6() {
 	   он вводит N, K и порядковый номер студента, а программа определяет, в какую группу он попадает.
 	   Подсказка: в одну группу могут попадать студенты из разных частей списка.
 	*/
-	var studentsNumber, groupsNumber, studentsMaxInGroup int
+	var studentsNumber int     // Количество студентов
+	var groupsNumber int       // Количество групп
+	var studentsMaxInGroup int // Максимально студентов вгруппе
+	var studentNumber int      // Номер текущего студента
+
+	var studentsInGroup []int // Студентов в каждой группе
+
 	fmt.Println("Студенты* (сложная задача)")
 	fmt.Print("Введите количество студентов:")
 	fmt.Scan(&studentsNumber)
@@ -179,9 +185,16 @@ func task6() {
 	fmt.Scan(&groupsNumber)
 	studentsMaxInGroup = studentsNumber/groupsNumber + 1
 	fmt.Print("Мксимальное количество студентов в группе:", studentsMaxInGroup, "\n")
-	for i := 0; i < studentsNumber-1; i++ {
+	studentsInGroup = append(studentsInGroup, studentsNumber-1)
+	res := 0
+	for i := 1; i < studentsNumber; i++ {
+		fmt.Print("Введите порядковый номер студента:")
+		fmt.Scanln(&studentNumber)
+		res = studentNumber % groupsNumber
+		println(&res)
 
 	}
+
 }
 func task7() {
 	fmt.Println("test")
