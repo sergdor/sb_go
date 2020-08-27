@@ -1,0 +1,2 @@
+language = "go"
+run = "go run hw4.go"
