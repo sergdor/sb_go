@@ -27,7 +27,7 @@ func main() {
 	fmt.Println("========================")
 	fmt.Println("Задача 6.")
 	fmt.Println("========================")
-	task6()
+	//task6()
 	fmt.Println("========================")
 	fmt.Println("Задача 7.")
 	fmt.Println("========================")
@@ -175,27 +175,86 @@ func task6() {
 	var groupsNumber int       // Количество групп
 	var studentsMaxInGroup int // Максимально студентов вгруппе
 	var studentNumber int      // Номер текущего студента
-
-	var studentsInGroup []int // Студентов в каждой группе
+	var studentsInGroup int    // Студентов в группе
+	var groupNumber int        // Группа номер
 
 	fmt.Println("Студенты* (сложная задача)")
 	fmt.Print("Введите количество студентов:")
 	fmt.Scan(&studentsNumber)
 	fmt.Print("Введите количество групп:")
 	fmt.Scan(&groupsNumber)
-	studentsMaxInGroup = studentsNumber/groupsNumber + 1
-	fmt.Print("Мксимальное количество студентов в группе:", studentsMaxInGroup, "\n")
-	studentsInGroup = append(studentsInGroup, studentsNumber-1)
-	res := 0
-	for i := 1; i < studentsNumber; i++ {
-		fmt.Print("Введите порядковый номер студента:")
-		fmt.Scanln(&studentNumber)
-		res = studentNumber % groupsNumber
-		println(&res)
-
+	studentsMaxInGroup = studentsNumber / groupsNumber
+	if studentsNumber/groupsNumber > studentsMaxInGroup {
+		studentsMaxInGroup++
 	}
-
+	fmt.Print("Мксимальное количество студентов в группе:", studentsMaxInGroup, "\n")
+	for i := 1; i <= studentsNumber; i++ {
+		if studentsInGroup == studentsMaxInGroup || groupNumber == 0 {
+			studentsInGroup = 0
+			groupNumber++
+			fmt.Print("Заполнение группы №", groupNumber, "\n")
+		}
+		fmt.Print("Введите порядковый номер студента:")
+		fmt.Scan(&studentNumber)
+		studentsInGroup++
+	}
 }
 func task7() {
-	fmt.Println("test")
+	/*
+		Задача 7. Прогрессивный налог* (сложная задача)
+		В последнем уроке мы писали программу, вычисляющую сумму налога по прогрессивной шкале в зависимости от полученного
+		заработка: 13% на доход до 10000 руб., 20% на доход от 10000 до 50000 руб., 30% на доход выше 50000 руб.
+		Однако, во многих странах, использующих такую шкалу, эта сумма вычисляется более сложным способом.
+		А именно, налоговая ставка 30% на доход выше 50000 руб. означает, что 30% уплачивается не со всей суммы,
+		а лишь с той ее части, которая превосходит 50000 руб. Аналогично, ставка 20% на доход от 10000 до 50000 руб.
+		обязывает уплатить 20% лишь с той части суммы, которая превосходит 10000 руб., но не превосходит 50000 руб.
+		Так, например, с дохода 100000 руб. придется заплатить такой налог:
+		30% * (100000-50000) + 20% * (50000-20000) + 13% * 10000 = 15000+6000+1300=22300.
+		А с дохода 30000 — такой: 20% * (30000-20000) + 13% * 10000 = 2000+1300=3300.
+		Напишите программу, которая спрашивает у пользователя его доход и высчитывает сумму налога для него по вышеописанным правилам.
+	*/
+
+	fmt.Println("Прогрессивный налог* (сложная задача)")
+	var profit int               // Прибыль
+	var tax1, tax2, tax3 float64 // Сумма налага 1,2,3
+	var summTax1 int             // 1 сумма с которой начинается налог
+	summTax2 := 10000            // 2 сумма с которой начинается налог
+	summTax3 := 50000            // 3 сумма с которой начинается налог
+	taxPercent1 := 0.13          // 1 процент налога
+	taxPercent2 := 0.20          // 2 процент налога
+	taxPercent3 := 0.30          // 3 процент налога
+	var tax float64              // Общая сумма налога
+	for profit == 0 {
+		fmt.Print("Введите сумму прибыли:")
+		fmt.Scan(&profit)
+		if profit == 0 {
+			fmt.Println("Некорректно введены данные! Повторите ввод данных!")
+		}
+	}
+
+	if profit >= summTax3 {
+		tax3 = float64(profit-summTax3) * taxPercent3
+		tax2 = float64(summTax3) * taxPercent2
+		tax1 = float64(summTax2) * taxPercent1
+		tax = tax1 + tax2 + tax3
+		//tax = (float64(summTax2) * taxPercent1) + float64(summTax3) * taxPercent2 + float64(profit-summTax3) * taxPercent3
+	} else if profit >= summTax2 {
+		tax2 = float64(profit-summTax2) * taxPercent2
+		tax1 = float64(summTax2) * taxPercent1
+		tax = tax1 + tax2
+		//tax = (float64(summTax2) * taxPercent1) + float64(summTax3) * taxPercent2
+	} else if profit >= summTax1 {
+		tax1 = float64(profit-summTax1) * taxPercent1
+		tax = tax1
+		//tax = float64(profit-summTax1) * taxPercent1
+	}
+	fmt.Print("Сумма налога ", taxPercent1*100, "%:", tax1, "\n")
+	if tax2 > 0 {
+		fmt.Print("Сумма налога ", taxPercent2*100, "%:", tax2, "\n")
+	}
+	if tax3 > 0 {
+		fmt.Print("Сумма налога ", taxPercent3*100, "%:", tax3, "\n")
+	}
+
+	fmt.Print("Общая сумма налога составила:", tax, "\n")
 }
