@@ -241,9 +241,9 @@ func task0506() {
 	fmt.Scan(&b)
 	fmt.Print("Введите c:")
 	fmt.Scan(&c)
+
 	d := math.Pow(b, 2) - 4*a*c
-	fmt.Println("d =", d)
-	//d = 0
+
 	if d < 0 {
 		fmt.Println("корней нет")
 	} else if d == 0 {
