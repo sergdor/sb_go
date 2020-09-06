@@ -7,7 +7,7 @@ import (
 
 //Домашнее задание 4
 func main() {
-	fmt.Println("========================")
+	/*fmt.Println("========================")
 	fmt.Println("Задача 05.01.")
 	fmt.Println("========================")
 	task0501()
@@ -30,8 +30,8 @@ func main() {
 	fmt.Println("========================")
 	fmt.Println("Задача 05.06.")
 	fmt.Println("========================")
-	task0506()
-	fmt.Println("========================")
+	*/task0506()
+	/*fmt.Println("========================")
 	fmt.Println("Задача 05.07.")
 	fmt.Println("========================")
 	task0507()
@@ -39,6 +39,7 @@ func main() {
 	fmt.Println("Задача 05.08.")
 	fmt.Println("========================")
 	task0508()
+	*/
 
 }
 func task0501() {
@@ -172,7 +173,7 @@ func task0504() {
 	fmt.Scan(&coin2)
 	fmt.Print("Введите номенал третей монеты:")
 	fmt.Scan(&coin3)
-	if coin1+coin2+coin3 > valueGoods {
+	if coin1+coin2+coin3 >= valueGoods {
 		if coin1+coin2+coin3 == valueGoods || coin1+coin2 == valueGoods || coin1+coin3 == valueGoods || coin2+coin3 == valueGoods || coin1 == valueGoods || coin2 == valueGoods || coin3 == valueGoods {
 			fmt.Println("Пользователь может оплатить без сдачи")
 		} else {
@@ -249,7 +250,11 @@ func task0506() {
 	//d = 0
 	if d < 0 {
 		fmt.Println("корней нет")
-	} else if d >= 0 {
+	} else if d == 0 {
+		fmt.Println("корень один")
+		fmt.Println(-b / (2 * a))
+	} else if d > 0 {
+		fmt.Println("корней два")
 		fmt.Println((-b + math.Sqrt(d)) / 2 * a)
 		fmt.Println((-b - math.Sqrt(d)) / 2 * a)
 	}
