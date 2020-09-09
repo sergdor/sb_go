@@ -7,7 +7,7 @@ import (
 //Домашнее задание 6
 func main() {
 
-	fmt.Println("========================")
+	/*fmt.Println("========================")
 	fmt.Println("Задача 06.01.")
 	fmt.Println("========================")
 	task0601()
@@ -26,11 +26,11 @@ func main() {
 	fmt.Println("========================")
 	fmt.Println("Задача 06.05.")
 	fmt.Println("========================")
-	task0605()
-	fmt.Println("========================")
-	fmt.Println("Задача 06.06.")
-	fmt.Println("========================")
-	task0606()
+	*/task0605()
+	//fmt.Println("========================")
+	//fmt.Println("Задача 06.06.")
+	//fmt.Println("========================")
+	//task0606()
 
 }
 func task0601() {
@@ -124,7 +124,26 @@ func task0605() {
 	fmt.Print("Введите количество яблок:")
 	fmt.Scan(&applesAmount)
 
-	for applesAmount > 0 && basketAmount1 < basketCapacity1 {
+	for applesAmount > 0 {
+		if basketAmount1 < basketCapacity1 {
+			basketAmount1++
+			applesAmount--
+			continue
+		}
+		if basketAmount2 < basketCapacity2 {
+			basketAmount2++
+			applesAmount--
+			continue
+		}
+		if basketAmount3 < basketCapacity3 {
+			basketAmount3++
+			applesAmount--
+			continue
+		}
+		break
+	}
+
+	/*for applesAmount > 0 && basketAmount1 < basketCapacity1 {
 		applesAmount--
 		basketAmount1++
 	}
@@ -136,11 +155,12 @@ func task0605() {
 		applesAmount--
 		basketAmount3++
 	}
+	*/
+
 	fmt.Print("Яблок в корзине 1:", basketAmount1, "\n")
 	fmt.Print("Яблок в корзине 2:", basketAmount2, "\n")
 	fmt.Print("Яблок в корзине 3:", basketAmount3, "\n")
 	fmt.Print("Яблок осталось:", applesAmount, "\n")
-	//сокрее всего не верно понял задачу т.к. не используются continue и break
 }
 func task0606() {
 	/*Задание 6*. Движение лифта
