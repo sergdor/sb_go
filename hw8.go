@@ -146,4 +146,3 @@ func task0803(bills []int) bool {
 	}
 	return result
 }
-
