@@ -31,14 +31,15 @@ func task0901() {
 		    Проверить, что при выполнении задачи используются встроенные в пакет math константы на максимальные значения типов.
 		    Подсчитать количество переполнений типов uint8, uint16 в диапазоне от 0 до uint32.
 	*/
-	countUint8 := 0
-	countUint16 := 0
-	for i := 0; i < math.MaxUint32; i++ {
-		if i%int(math.MaxUint8) == int(math.MaxUint8)-1 {
+
+	countUint8 := -1
+	countUint16 := -1
+	for i := 0; i < math.MaxUint32; i = i + int(math.MaxUint8) + 1 {
+		if uint8(i) == 0 {
 			countUint8++
-		}
-		if i%int(math.MaxUint16) == int(math.MaxUint16)-1 {
-			countUint16++
+			if uint16(i) == 0 {
+				countUint16++
+			}
 		}
 	}
 	fmt.Printf("Количество Uint8: %v \nКоличество Uint16: %v\n", countUint8, countUint16)
@@ -65,33 +66,34 @@ func task0902() {
 		    -3000 3000 результат int32
 	*/
 	var number1, number2 int16 //Пользовательский ввод
-	var resultType string      //описание тапа результата
+	var resultType string      //Описание тапа результата
 	fmt.Print("Введите первое число:")
 	fmt.Scan(&number1)
 	fmt.Print("Введите второе число:")
 	fmt.Scan(&number2)
 	result := int32(number1) * int32(number2)
 	if result >= 0 {
-		if result < math.MaxUint8 {
+		switch {
+		case result < math.MaxUint8:
 			resultType = "Uint8"
-		} else if result < math.MaxUint16 {
+		case result < math.MaxUint16:
 			resultType = "Uint16"
-		} else if uint(result) < math.MaxUint32 {
+		case uint(result) < math.MaxUint32:
 			resultType = "Uint32"
-		} else {
+		default:
 			resultType = "Ошибка"
 		}
 	} else {
-		if result > -math.MaxInt8 {
+		switch {
+		case result > -math.MaxInt8:
 			resultType = "Int8"
-		} else if result > -math.MaxInt16 {
+		case result > -math.MaxInt16:
 			resultType = "Int16"
-		} else if int(result) > -int(math.MaxInt32) {
+		case int(result) > -int(math.MaxInt32):
 			resultType = "Int32"
-		} else {
+		default:
 			resultType = "Ошибка"
 		}
-
 	}
 	fmt.Println(number1, "*", number2, "=", result, "Тип:", resultType)
 
