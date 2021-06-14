@@ -43,12 +43,9 @@ func task1001() {
 	//fmt.Scan(n)
 	x = 1
 	n = 3
-	//fmt.Println("x=", x)
-	//fmt.Println("n=", n)
 	eps := 1 / math.Pow(10, float64(n))
 	fmt.Println("eps =", eps)
-	//res = 1.0 + float64(x)
-	//fmt.Println("res = ", res)
+
 	for i := 1; i <= 10; i++ {
 		facti = 1
 		for ii := 1; ii < i; ii++ {
