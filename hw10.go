@@ -6,14 +6,14 @@ import (
 )
 
 func main() {
-	fmt.Println("========================")
-	fmt.Println("Задача 10.01.")
-	fmt.Println("========================")
+	//fmt.Println("========================")
+	//fmt.Println("Задача 10.01.")
+	//fmt.Println("========================")
 	task1001()
-	fmt.Println("========================")
-	fmt.Println("Задача 10.02.")
-	fmt.Println("========================")
-	task1002()
+	//fmt.Println("========================")
+	//fmt.Println("Задача 10.02.")
+	//fmt.Println("========================")
+	//task1002()
 }
 func task1001() {
 	/*
@@ -45,13 +45,15 @@ func task1001() {
 	n = 3
 	eps := 1 / math.Pow(10, float64(n))
 	fmt.Println("eps =", eps)
+	res = 1.0
+	fmt.Println("res = ", res)
 
-	for i := 1; i <= 10; i++ {
-		facti = 1
+	for i := 0; i <= 10; i++ {
+		facti = 1 // получаем факториал i
 		for ii := 1; ii < i; ii++ {
 			facti = facti + facti*float64(ii)
 		}
-		xi := math.Pow(float64(i), float64(x))
+		xi := math.Pow(float64(x), float64(i)) //получаем x в степени i
 
 		res += xi / (facti)
 
