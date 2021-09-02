@@ -1,18 +1,18 @@
 package main
 
 import (
-	"fmt"
+	. "fmt"
 	"math"
 )
 
 func main() {
-	fmt.Println("========================")
-	fmt.Println("Задача 10.01.")
-	fmt.Println("========================")
+	Println("========================")
+	Println("Задача 10.01.")
+	Println("========================")
 	task1001()
-	fmt.Println("========================")
-	fmt.Println("Задача 10.02.")
-	fmt.Println("========================")
+	Println("========================")
+	Println("Задача 10.02.")
+	Println("========================")
 	task1002()
 }
 func task1001() {
@@ -36,11 +36,11 @@ func task1001() {
 	   https://www.cyberforum.ru/cpp-beginners/thread1395848.html
 	*/
 	var facti, res float64
-	var x, n int = 0, 0
-	fmt.Print("Введите x: ")
-	fmt.Scan(&x)
-	fmt.Print("Введите n: ")
-	fmt.Scan(&n)
+	var x, n int
+	Print("Введите x: ")
+	_, _ = Scan(&x)
+	Print("Введите n: ")
+	_, _ = Scan(&n)
 	//x = 1
 	//n = 3
 	eps := 1 / math.Pow(10, float64(n))
@@ -62,7 +62,7 @@ func task1001() {
 		}
 	}
 
-	fmt.Println("result = ", res)
+	Println("result = ", res)
 }
 
 func task1002() {
@@ -85,23 +85,23 @@ func task1002() {
 		    Для 1000 рублей, 1% и 10 лет программа должна вывести 3299.41 и 0.5216000000013992 (возможно меньше знаков)
 	*/
 
-	var roundingAmount, сontribution, percent float64
+	var roundingAmount, contribution, percent float64
 	var years int
 
-	fmt.Print("Введите сумму вклада: ")
-	fmt.Scan(&сontribution)
-	fmt.Print("Введите количество лет: ")
-	fmt.Scan(&years)
-	fmt.Print("Введите процент: ")
-	fmt.Scan(&percent)
+	Print("Введите сумму вклада: ")
+	_, _ = Scan(&contribution)
+	Print("Введите количество лет: ")
+	_, _ = Scan(&years)
+	Print("Введите процент: ")
+	_, _ = Scan(&percent)
 
 	roundingAmount = 0
 
 	for i := 1; i <= years*12; i++ {
-		fullContribution := сontribution + сontribution*percent/100
-		сontribution = math.Trunc(fullContribution*100) / 100
-		roundingAmount += fullContribution - сontribution
+		fullContribution := contribution + contribution*percent/100
+		contribution = math.Trunc(fullContribution*100) / 100
+		roundingAmount += fullContribution - contribution
 	}
 
-	fmt.Println("Сумма:", сontribution, " Сумма банка:", roundingAmount)
+	Println("Сумма:", contribution, " Сумма банка:", roundingAmount)
 }
