@@ -7,13 +7,13 @@ import (
 )
 
 func main() {
-	//Println("========================")
-	//Println("Задача 11.01.")
-	//Println("========================")
-	//task1101()
-	//Println("========================")
-	//Println("Задача 11.02.")
-	//Println("========================")
+	fmt.Println("========================")
+	fmt.Println("Задача 11.01.")
+	fmt.Println("========================")
+	task1101()
+	fmt.Println("========================")
+	fmt.Println("Задача 11.02.")
+	fmt.Println("========================")
 	task1102()
 }
 
@@ -31,7 +31,7 @@ func task1101() {
 	s1=" go is an open source programming language that makes it easy to build simple, reliable, and efficient Software "
 	s1="           "
 	s1="Проверка Раз два Три"
-
+	fmt.Println(s1)
 	s1 = s1 + " "
 	for len(s1) > 0 {
 		s1 = strings.TrimLeft(s1, " ")
@@ -47,7 +47,7 @@ func task1101() {
 			s1 = s1[spaceIndex+1:]
 		}
 	}
-	println("Заглавных букв:", count)
+	fmt.Println("Заглавных букв:", count)
 }
 
 func task1102() {
