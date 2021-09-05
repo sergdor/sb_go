@@ -70,11 +70,11 @@ func task1102() {
 	s1Mass:= strings.Fields(s1)
 	fmt.Println(s1Mass)
 	for _, i:=range s1Mass{
-		_, err := strconv.ParseInt(i,10,64)
-		if err != nil {
-			isStrings += i + " "
-		}else {
+		_, err := strconv.Atoi(i)
+		if  err == nil{
 			isNubers += i + " "
+		} else {
+			isStrings += i + " "
 		}
 	}
 	isStrings = strings.Trim(isStrings, " ")
