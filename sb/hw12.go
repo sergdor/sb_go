@@ -3,6 +3,8 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"io"
+	"io/ioutil"
 	"os"
 	"strings"
 	"time"
@@ -10,13 +12,21 @@ import (
 
 func main() {
 	//fmt.Println("========================")
-	//fmt.Println("Задача 12.01.")
-	//fmt.Println("========================")
-	task1202()
-	//fmt.Println("========================")
 	//fmt.Println("Задача 12.02.")
 	//fmt.Println("========================")
-	//task1102()
+	//task1202()
+	//fmt.Println("========================")
+	//fmt.Println("Задача 12.03.")
+	//fmt.Println("========================")
+	//task1203()
+	//fmt.Println("========================")
+	//fmt.Println("Задача 12.04.")
+	//fmt.Println("========================")
+	//task1204()
+	//fmt.Println("========================")
+	//fmt.Println("Задача 12.05.")
+	//fmt.Println("========================")
+	task1205()
 }
 
 func task1202()  {
@@ -28,7 +38,7 @@ func task1202()  {
 	fileName := "hw12.2.txt"
 	file, err := os.Create(fileName)
 	if err != nil {
-		fmt.Print("Ошибка создания файла!", err)
+		fmt.Print("Ошибка создания файла", err)
 		return
 	}
 	defer file.Close()
@@ -48,7 +58,144 @@ func task1202()  {
 		fullStr += time.Now().Format(timeFormat) + " " + str + "\n"
 		//fmt.Println(str)
 	}
+	_, err = file.WriteString(fullStr)
+	if err != nil {
+		fmt.Print("Ошибка записи в файл", err)
+		return
+	}
 	fmt.Println("Работа программы завершена! Все данные сохранены в файл", fileName, "Введены следующие строки")
 	fmt.Println(fullStr)
-	file.WriteString(fullStr)
+}
+
+func task1203()  {
+	//Урок №3 интерфейс io.Reader
+	//Написать программу, которая полностью вычитывала бы файл из предыдущего домашнего задания без использования ioutil
+	//Подсказка: для получения размера файла у файла есть метод Stat(), который возвращает информацию о файле и ошибку.
+	
+	fileName := "hw12.2.txt"
+	file, err := os.Open(fileName)
+	if err != nil {
+		fmt.Println("Ошибка открытия файла" ,err)
+		return
+	}
+	defer file.Close()
+	stat, err := file.Stat()
+	if err != nil {
+		fmt.Println("Ошибка получения информации о файле", err)
+		return
+	}
+
+	buf := make([]byte, stat.Size())
+	if _, err := io.ReadFull(file, buf); err != nil {
+		fmt.Println("Ошибка чтения файла", err)
+		return
+	}
+	fmt.Println("Содержимое файла", fileName)
+	fmt.Printf("%s", buf)
+}
+
+func task1204()  {
+	//Урок №4 уровни доступа
+	//Создать файл только для чтения и проверить, что в него нельзя записать данные
+
+	fileName := "hw12.4.txt"
+	file, err := os.Create(fileName)
+	if err != nil {
+		fmt.Print("Ошибка создания файла", err)
+		return
+	}
+	file.Close()
+
+	if err = os.Chmod(fileName,0444); err != nil {
+		fmt.Println("Ошибка установки прав", err)
+		return
+
+	}
+
+	file, err = os.Open(fileName)
+	if err != nil {
+		fmt.Print("Ошибка открытия файла", err)
+		return
+	}
+
+	if _, err = file.WriteString("Test"); err != nil {
+		fmt.Println("Ошибка записи в файл", err)
+		return
+	}
+}
+
+func task1205()  {
+	//Урок №6 пакет ioutil
+	//переписать задачи из урока 2 и 3 на пакет ioutil
+
+	//Урок №2 Работа с файлами
+	//Написать программу, которая на вход получала бы строку, введенную пользователем, а в файл писала: № строки,
+	//дата и сообщение в формате:
+	//2020-02-10 15:00:00 продам гараж
+	//при вводе слова “выход” производился бы выход из программы
+	fileName := "hw12.5.txt"
+
+	file, err := os.Create(fileName)
+	if err != nil {
+		fmt.Print("Ошибка создания файла", err)
+		return
+	}
+	defer file.Close()
+
+	var str, fullStr string
+	strExit := "ВЫХОД"
+	fmt.Println("Введите сообщения или команду 'Выход':")
+	timeFormat := "2006-01-02 15:04:05"
+	scanStdin := bufio.NewScanner(os.Stdin)
+	for {
+		scanStdin.Scan()
+		str = scanStdin.Text()
+		str = strings.Trim(str, " ")
+		if strings.ToUpper(str) == strExit {
+			break
+		}
+		fullStr += time.Now().Format(timeFormat) + " " + str + "\n"
+		//fmt.Println(str)
+	}
+	buf := [] byte (fullStr)
+	err = ioutil.WriteFile(fileName,buf,0666)
+	if err != nil {
+		fmt.Print("Ошибка записи в файл", err)
+		return
+	}
+
+	fmt.Println("Работа программы завершена! Все данные сохранены в файл", fileName, "Введены следующие строки")
+	fmt.Println(fullStr)
+	//file.WriteString(fullStr)
+
+	//Урок №3 интерфейс io.Reader
+	//Написать программу, которая полностью вычитывала бы файл из предыдущего домашнего задания без использования ioutil
+	//Подсказка: для получения размера файла у файла есть метод Stat(), который возвращает информацию о файле и ошибку.
+
+	fileName = "hw12.5.txt"
+
+	file, err = os.Open(fileName)
+	if err != nil {
+		fmt.Println("Ошибка открытия файла" ,err)
+		return
+	}
+	stat, err := file.Stat()
+
+	file.Close()
+
+	if err != nil {
+		fmt.Println("Ошибка получения информации о файле", err)
+		return
+	}
+
+	buf = make([]byte, stat.Size())
+
+	buf, err = ioutil.ReadFile(fileName)
+	if err != nil {
+		fmt.Println("Ошибка чтения файла" ,err)
+		return
+	}
+	fmt.Println("Содержимое файла", fileName)
+	fmt.Printf("%s", buf)
+
 }
