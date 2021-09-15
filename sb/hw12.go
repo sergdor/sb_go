@@ -11,22 +11,26 @@ import (
 )
 
 func main() {
-	//fmt.Println("========================")
-	//fmt.Println("Задача 12.02.")
-	//fmt.Println("========================")
-	//task1202()
-	//fmt.Println("========================")
-	//fmt.Println("Задача 12.03.")
-	//fmt.Println("========================")
-	//task1203()
-	//fmt.Println("========================")
-	//fmt.Println("Задача 12.04.")
-	//fmt.Println("========================")
-	//task1204()
-	//fmt.Println("========================")
-	//fmt.Println("Задача 12.05.")
-	//fmt.Println("========================")
+	fmt.Println("========================")
+	fmt.Println("Задача 12.02.")
+	fmt.Println("========================")
+	task1202()
+	fmt.Println("========================")
+	fmt.Println("Задача 12.03.")
+	fmt.Println("========================")
+	task1203()
+	fmt.Println("========================")
+	fmt.Println("Задача 12.04.")
+	fmt.Println("========================")
+	task1204()
+	fmt.Println("========================")
+	fmt.Println("Задача 12.05.")
+	fmt.Println("========================")
 	task1205()
+	fmt.Println("========================")
+	fmt.Println("Задача 12.05.")
+	fmt.Println("========================")
+	task1206()
 }
 
 func task1202()  {
@@ -198,4 +202,37 @@ func task1205()  {
 	fmt.Println("Содержимое файла", fileName)
 	fmt.Printf("%s", buf)
 
+}
+
+func task1206()  {
+	//Дополнительно задание со звездочкой*
+	//Написать программу, которая на вход принимала бы интовое число
+	//и для него генерировала бы все возможные комбинации круглых скобок, т.е.
+	//на вход приходит число 3
+	//на выходе:
+	//["((()))","(()())","(())()","()(())","()()()"]
+	//на вход 1
+	//на выходе:
+	//["()"]
+
+	var val int
+	fmt.Print("Введите число:")
+	fmt.Scan(&val)
+	//val = 3
+	res := make([]string, 0)
+
+	task1206_1(val, val, "", &res)
+
+	fmt.Println(res)
+}
+
+func task1206_1(open, closing int, queue string, result *[] string)  {
+	if open == 0 {
+		*result = append(*result, queue + strings.Repeat(")", closing))
+		return
+	}
+	if closing > open {
+		task1206_1(open, closing - 1, queue + ")", result)
+	}
+	task1206_1(open - 1, closing, queue + "(", result)
 }
