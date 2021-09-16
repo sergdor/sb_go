@@ -45,19 +45,19 @@ func task1401() {
 	//передает в функцию в качестве аргумента и выводит в консоль результат ее работы.
 	var msg string
 	a := rand.Intn(10)
-	if evenТumber(a) {
+	if evenTumber(a) {
 		msg = "Число " + strconv.Itoa(a) + " четное"
-	}else {
+	} else {
 		msg = "Число " + strconv.Itoa(a) + " нечетное"
 	}
 	fmt.Println(msg)
 }
 
-func evenТumber(a int) bool {
+func evenTumber(a int) bool {
 	return a%2 == 0
 }
 
-func task1402()  {
+func task1402() {
 	//Задание 2. Функция возвращающая несколько значений
 	//Что нужно сделать
 	//Напишите программу, которая с помощью функции генерирует 3 случайные точки в двумерном пространстве (две координаты),
@@ -65,25 +65,25 @@ func task1402()  {
 	a1, b1 := getXY()
 	a2, b2 := getXY()
 	a3, b3 := getXY()
-	fmt.Println("a1 =", a1, "b1 =",b1)
-	fmt.Println("a2 =", a2, "b2 =",b2)
-	fmt.Println("a3 =", a3, "b3 =",b3)
+	fmt.Println("a1 =", a1, "b1 =", b1)
+	fmt.Println("a2 =", a2, "b2 =", b2)
+	fmt.Println("a3 =", a3, "b3 =", b3)
 	applyFormula(&a1, &b1)
 	applyFormula(&a2, &b2)
 	applyFormula(&a3, &b3)
-	fmt.Println("a1 =", a1, "b1 =",b1)
-	fmt.Println("a2 =", a2, "b2 =",b2)
-	fmt.Println("a3 =", a3, "b3 =",b3)
+	fmt.Println("a1 =", a1, "b1 =", b1)
+	fmt.Println("a2 =", a2, "b2 =", b2)
+	fmt.Println("a3 =", a3, "b3 =", b3)
 }
-func applyFormula(x,y *int)  {
-	*x = 2 * *x + 10
-	*y = -3 * *y - 5
+func applyFormula(x, y *int) {
+	*x = 2**x + 10
+	*y = -3**y - 5
 }
-func getXY()  (int, int) {
+func getXY() (int, int) {
 	return rand.Intn(10), rand.Intn(10)
 }
 
-func task1403()  {
+func task1403() {
 	//Задание 3. Именованные возвращаемые значения
 	//Что нужно сделать
 	//Напишите программу, которая на вход получает число, затем с помощью двух функции преобразует его.
@@ -100,12 +100,12 @@ func multiplication(i int) (res int) {
 	res = i * 2
 	return
 }
-func addendum(i int) (res int)  {
+func addendum(i int) (res int) {
 	res = i + 2
 	return
 }
 
-func task1404()  {
+func task1404() {
 	//Задание 4. Область видимости переменных
 	//Что нужно сделать
 	//Напишите программу, в которой будет 3 функции, попарно использующие разные глобальные переменные.
@@ -118,12 +118,12 @@ func task1404()  {
 	fmt.Println(task1404_3(task1404_2(task1404_1(i))))
 
 }
-func task1404_1(i int) int{
+func task1404_1(i int) int {
 	return i + task1404_a + task1404_b
 }
-func task1404_2(i int) int{
+func task1404_2(i int) int {
 	return i + task1404_b + task1404_c
 }
-func task1404_3(i int) int{
+func task1404_3(i int) int {
 	return i + task1404_c + task1404_a
 }

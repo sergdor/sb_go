@@ -33,7 +33,7 @@ func main() {
 	task1206()
 }
 
-func task1202()  {
+func task1202() {
 	//Урок №2 Работа с файлами
 	//Написать программу, которая на вход получала бы строку, введенную пользователем, а в файл писала: № строки,
 	//дата и сообщение в формате:
@@ -71,15 +71,15 @@ func task1202()  {
 	fmt.Println(fullStr)
 }
 
-func task1203()  {
+func task1203() {
 	//Урок №3 интерфейс io.Reader
 	//Написать программу, которая полностью вычитывала бы файл из предыдущего домашнего задания без использования ioutil
 	//Подсказка: для получения размера файла у файла есть метод Stat(), который возвращает информацию о файле и ошибку.
-	
+
 	fileName := "hw12.2.txt"
 	file, err := os.Open(fileName)
 	if err != nil {
-		fmt.Println("Ошибка открытия файла" ,err)
+		fmt.Println("Ошибка открытия файла", err)
 		return
 	}
 	defer file.Close()
@@ -98,7 +98,7 @@ func task1203()  {
 	fmt.Printf("%s", buf)
 }
 
-func task1204()  {
+func task1204() {
 	//Урок №4 уровни доступа
 	//Создать файл только для чтения и проверить, что в него нельзя записать данные
 
@@ -110,7 +110,7 @@ func task1204()  {
 	}
 	file.Close()
 
-	if err = os.Chmod(fileName,0444); err != nil {
+	if err = os.Chmod(fileName, 0444); err != nil {
 		fmt.Println("Ошибка установки прав", err)
 		return
 
@@ -128,7 +128,7 @@ func task1204()  {
 	}
 }
 
-func task1205()  {
+func task1205() {
 	//Урок №6 пакет ioutil
 	//переписать задачи из урока 2 и 3 на пакет ioutil
 
@@ -161,8 +161,8 @@ func task1205()  {
 		fullStr += time.Now().Format(timeFormat) + " " + str + "\n"
 		//fmt.Println(str)
 	}
-	buf := [] byte (fullStr)
-	err = ioutil.WriteFile(fileName,buf,0666)
+	buf := []byte(fullStr)
+	err = ioutil.WriteFile(fileName, buf, 0666)
 	if err != nil {
 		fmt.Print("Ошибка записи в файл", err)
 		return
@@ -180,7 +180,7 @@ func task1205()  {
 
 	file, err = os.Open(fileName)
 	if err != nil {
-		fmt.Println("Ошибка открытия файла" ,err)
+		fmt.Println("Ошибка открытия файла", err)
 		return
 	}
 	stat, err := file.Stat()
@@ -196,7 +196,7 @@ func task1205()  {
 
 	buf, err = ioutil.ReadFile(fileName)
 	if err != nil {
-		fmt.Println("Ошибка чтения файла" ,err)
+		fmt.Println("Ошибка чтения файла", err)
 		return
 	}
 	fmt.Println("Содержимое файла", fileName)
@@ -204,7 +204,7 @@ func task1205()  {
 
 }
 
-func task1206()  {
+func task1206() {
 	//Дополнительно задание со звездочкой*
 	//Написать программу, которая на вход принимала бы интовое число
 	//и для него генерировала бы все возможные комбинации круглых скобок, т.е.
@@ -226,13 +226,13 @@ func task1206()  {
 	fmt.Println(res)
 }
 
-func task1206_1(open, closing int, queue string, result *[] string)  {
+func task1206_1(open, closing int, queue string, result *[]string) {
 	if open == 0 {
-		*result = append(*result, queue + strings.Repeat(")", closing))
+		*result = append(*result, queue+strings.Repeat(")", closing))
 		return
 	}
 	if closing > open {
-		task1206_1(open, closing - 1, queue + ")", result)
+		task1206_1(open, closing-1, queue+")", result)
 	}
-	task1206_1(open - 1, closing, queue + "(", result)
+	task1206_1(open-1, closing, queue+"(", result)
 }

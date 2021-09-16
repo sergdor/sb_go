@@ -20,16 +20,15 @@ func main() {
 	task1301(func1, func2, 1, 2)
 }
 
-func task1301(a1 func(int), a2 func(int), a, b int)  {
+func task1301(a1 func(int), a2 func(int), a, b int) {
 	a2(b)
 	a1(a)
 
 }
 
-func func1 (a int)  {
+func func1(a int) {
 	fmt.Println(a)
 }
-func func2 (a int)  {
+func func2(a int) {
 	fmt.Println(a)
 }
-
