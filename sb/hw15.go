@@ -37,7 +37,6 @@ func task1501() {
 
 	fmt.Println("чётных — ", evenNumber)
 	fmt.Println("нечётных — ", masCount-evenNumber)
-
 }
 func task1502() {
 	//Задание 2. Функция, реверсирующая массив
