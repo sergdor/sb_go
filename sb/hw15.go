@@ -27,18 +27,26 @@ func task1501() {
 	//Для введённых чисел 1, 1, 1, 2, 2, 2, 3, 3, 3, 4 программа должна вывести: чётных — 4, нечётных — 6.
 
 	mas := [masCount]int{}
-	evenNumber := 0
-	for i, _ := range mas {
+	for i := 0; i < masCount; i++ {
 
 		fmt.Printf("Введите значение %v:", i+1)
+
 		fmt.Scanln(&mas[i])
+	}
+	task1501_1(mas)
+}
+
+func task1501_1(mas [masCount]int) {
+	evenNumber := 0
+	for i := 0; i < masCount; i++ {
+
 		if mas[i]%2 == 0 {
 			evenNumber++
 		}
 	}
-
 	fmt.Println("чётных — ", evenNumber)
 	fmt.Println("нечётных — ", masCount-evenNumber)
+
 }
 func task1502() {
 	//Задание 2. Функция, реверсирующая массив
