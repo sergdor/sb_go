@@ -36,8 +36,7 @@ func determinant(m [rows1][cols1]int64) int64 {
 	x := m[1][1]*m[2][2] - m[2][1]*m[1][2]
 	y := m[1][0]*m[2][2] - m[2][0]*m[1][2]
 	z := m[1][0]*m[2][1] - m[2][0]*m[1][1]
-	determinant := m[0][0]*x - m[0][1]*y + m[0][2]*z
-	return determinant
+	return m[0][0]*x - m[0][1]*y + m[0][2]*z
 }
 
 func task2002() {
