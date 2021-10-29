@@ -12,7 +12,7 @@ func main() {
 	fmt.Println("========================")
 	fmt.Println("Задача 21.02.")
 	fmt.Println("========================")
-	task2102()
+	fmt.Println(task2102())
 }
 
 func task2101() {
@@ -29,21 +29,26 @@ func task2101() {
 	fmt.Println(f(1, 2, 3))
 }
 
-func task2102() {
+func task2102() (res int) {
 	//Задание 2. Анонимные функции
 	//Что нужно сделать
 	//Напишите функцию, которая на вход принимает функцию вида A func (int, int) int, а внутри оборачивает и вызывает её при выходе (через defer).
 	//Вызовите эту функцию с тремя разными анонимными функциями A. Тела функций могут быть любыми, но главное, чтобы все три выполняли разное действие.
 	//Рекомендация
 	//В качестве среды разработки может помочь Goland или VScode.
-	defer task2102_1(task2102_4)
+
+	defer func() {
+		res = task2102_1(task2102_4)
+	}()
 	task2102_1(task2102_2)
 	task2102_1(task2102_3)
-
+	return
 }
 
-func task2102_1(A func(int, int) int) {
-	fmt.Println(A(1, 2))
+func task2102_1(A func(int, int) int) int {
+	res := A(1, 2)
+	fmt.Println(res)
+	return res
 }
 func task2102_2(a int, b int) int {
 	return a + b + 1
